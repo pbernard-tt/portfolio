@@ -1,0 +1,16 @@
+node_modules
+dist
+.git
+.github
+.vscode
+.idea
+.astro
+npm-debug.log*
+*.log
+.DS_Store
+.env
+.env.*
+portfolio-base.html
+CLAUDE.md
+README.md
+.claude

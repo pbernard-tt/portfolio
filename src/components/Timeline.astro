@@ -1,0 +1,33 @@
+---
+import SectionHead from "./SectionHead.astro";
+import { timeline } from "../data/site";
+---
+
+<section class="section bg-bg-soft/40">
+  <div class="container-x">
+    <SectionHead
+      label={timeline.label}
+      heading={timeline.heading}
+      lead={timeline.lead}
+    />
+
+    <ol class="mt-12 space-y-4">
+      {
+        timeline.items.map((item) => (
+          <li
+            class="surface surface-hover grid grid-cols-1 gap-4 p-6 sm:grid-cols-[160px_1fr] sm:items-start"
+            data-reveal
+          >
+            <span class="inline-flex h-fit w-fit items-center rounded-full border border-line bg-card px-3 py-1 text-sm font-semibold text-blue">
+              {item.type}
+            </span>
+            <div>
+              <strong class="text-lg">{item.title}</strong>
+              <p class="mt-2 text-muted">{item.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import SectionHead from "./SectionHead.astro";
+import { capabilities } from "../data/site";
+---
+
+<section class="section bg-bg-soft/40">
+  <div class="container-x">
+    <SectionHead
+      label={capabilities.label}
+      heading={capabilities.heading}
+      lead={capabilities.lead}
+    />
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        capabilities.items.map((item) => (
+          <article class="surface surface-hover p-7" data-reveal>
+            <div class="grid h-12 w-12 place-items-center rounded-2xl bg-gradient-to-br from-blue/25 to-violet/25 text-xl">
+              {item.icon}
+            </div>
+            <h3 class="mt-5 text-xl font-semibold">{item.title}</h3>
+            <p class="mt-3 text-muted">{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

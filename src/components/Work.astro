@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import SectionHead from "./SectionHead.astro";
+import { featuredWork, type LogoKey } from "../data/site";
+import konvelo from "../assets/logos/konvelo.png";
+import vulkan from "../assets/logos/vulkan.png";
+import concorde from "../assets/logos/concorde.png";
+
+const logos: Record<LogoKey, ImageMetadata> = { konvelo, vulkan, concorde };
+---
+
+<section id="work" class="section bg-bg-soft/40">
+  <div class="container-x">
+    <SectionHead
+      label={featuredWork.label}
+      heading={featuredWork.heading}
+      lead={featuredWork.lead}
+    />
+
+    <!-- Flagship products -->
+    <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {
+        featuredWork.flagship.map((item) => (
+          <article
+            class="surface surface-hover flex flex-col p-7 sm:p-8"
+            data-reveal
+          >
+            <div class="flex items-center gap-4">
+              <div class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-line bg-white/95 p-2.5">
+                <Image
+                  src={logos[item.logo]}
+                  alt={`${item.title} logo`}
+                  width={48}
+                  height={48}
+                  class="h-full w-full object-contain"
+                />
+              </div>
+              <div>
+                <p class="label">{item.kicker}</p>
+                <h3 class="text-2xl font-bold">{item.title}</h3>
+              </div>
+            </div>
+            <p class="mt-5 text-muted">{item.body}</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              {item.tags.map((tag) => (
+                <span class="chip">{tag}</span>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Partner work -->
+    <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {
+        featuredWork.partner.map((item) => (
+          <article
+            class="surface surface-hover flex gap-5 p-7"
+            data-reveal
+          >
+            {"logo" in item ? (
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-white/95 p-2">
+                <Image
+                  src={logos[item.logo]}
+                  alt={`${item.title} logo`}
+                  width={40}
+                  height={40}
+                  class="h-full w-full object-contain"
+                />
+              </div>
+            ) : (
+              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-card text-sm font-bold text-blue">
+                {item.monogram}
+              </div>
+            )}
+            <div>
+              <h3 class="text-xl font-bold">{item.title}</h3>
+              <p class="mt-2 text-sm text-muted">{item.body}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

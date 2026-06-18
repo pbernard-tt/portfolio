@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import { hero, site } from "../data/site";
+import portrait from "../assets/portrait.jpg";
+---
+
+<section id="top" class="relative overflow-hidden">
+  <!-- Ambient background washes -->
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="
+      background:
+        radial-gradient(40rem 30rem at 8% -5%, rgba(96,165,250,0.30), transparent 70%),
+        radial-gradient(34rem 26rem at 95% 8%, rgba(52,211,153,0.20), transparent 70%),
+        radial-gradient(40rem 32rem at 50% 110%, rgba(167,139,250,0.16), transparent 70%);
+    "
+  >
+  </div>
+
+  <div
+    class="container-x grid grid-cols-1 items-center gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-28"
+  >
+    <div data-reveal>
+      <span class="eyebrow">{hero.eyebrow}</span>
+      <h1
+        class="mt-6 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        {hero.headlineLead}{" "}
+        <span class="gradient-text">{hero.headlineEmphasis}</span>
+      </h1>
+      <p class="mt-6 max-w-xl text-lg text-muted">{hero.copy}</p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={hero.primaryCta.href} class="btn btn-primary">
+          {hero.primaryCta.label} →
+        </a>
+        <a href={hero.secondaryCta.href} class="btn btn-secondary">
+          {hero.secondaryCta.label}
+        </a>
+      </div>
+
+      <dl class="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        {
+          hero.stats.map((stat) => (
+            <div class="surface p-4">
+              <dt class="font-semibold text-text">{stat.title}</dt>
+              <dd class="mt-1 text-sm text-muted">{stat.detail}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="relative mx-auto w-full max-w-sm" data-reveal>
+      <div
+        class="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr from-blue/40 via-green/20 to-violet/30 blur-2xl"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="overflow-hidden rounded-[1.75rem] border border-line shadow-[var(--shadow-soft)]"
+      >
+        <Image
+          src={portrait}
+          alt={`Portrait of ${site.name}`}
+          widths={[360, 480, 720]}
+          sizes="(max-width: 1024px) 80vw, 360px"
+          class="h-full w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div
+        class="surface mt-4 flex items-center justify-between px-4 py-3 text-sm"
+      >
+        <span class="font-semibold">{site.name}</span>
+        <span class="text-muted">{site.location}</span>
+      </div>
+    </div>
+  </div>
+</section>
