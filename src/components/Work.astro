@@ -5,8 +5,14 @@ import { featuredWork, type LogoKey } from "../data/site";
 import konvelo from "../assets/logos/konvelo.png";
 import vulkan from "../assets/logos/vulkan.png";
 import concorde from "../assets/logos/concorde.png";
+import appdoctor from "../assets/logos/appdoctor.png";
 
-const logos: Record<LogoKey, ImageMetadata> = { konvelo, vulkan, concorde };
+const logos: Record<LogoKey, ImageMetadata> = {
+  konvelo,
+  vulkan,
+  concorde,
+  appdoctor,
+};
 ---
 
 <section id="work" class="section bg-bg-soft/40">
@@ -59,7 +65,17 @@ const logos: Record<LogoKey, ImageMetadata> = { konvelo, vulkan, concorde };
             class="surface surface-hover flex gap-5 p-7"
             data-reveal
           >
-            {"logo" in item ? (
+            {"fill" in item && item.fill ? (
+              <div class="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-line">
+                <Image
+                  src={logos[item.logo]}
+                  alt={`${item.title} logo`}
+                  width={48}
+                  height={48}
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            ) : (
               <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-white/95 p-2">
                 <Image
                   src={logos[item.logo]}
@@ -68,10 +84,6 @@ const logos: Record<LogoKey, ImageMetadata> = { konvelo, vulkan, concorde };
                   height={40}
                   class="h-full w-full object-contain"
                 />
-              </div>
-            ) : (
-              <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-line bg-card text-sm font-bold text-blue">
-                {item.monogram}
               </div>
             )}
             <div>

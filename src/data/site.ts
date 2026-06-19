@@ -55,7 +55,7 @@ export const about = {
 } as const;
 
 /** Logo keys map to imports in src/components/Work.astro */
-export type LogoKey = "konvelo" | "vulkan" | "concorde";
+export type LogoKey = "konvelo" | "vulkan" | "concorde" | "appdoctor";
 
 export const featuredWork = {
   label: "Featured Work",
@@ -92,11 +92,13 @@ export const featuredWork = {
   partner: [
     {
       logo: "concorde" as LogoKey,
+      fill: true,
       title: "ConcordeApp",
       body: "Partner work on a mobile application ecosystem involving app performance visibility, analytics, Firebase and Google Play integrations, onboarding flows, multi-tenant architecture, and dashboards for helping app owners understand the health and usage of their applications.",
     },
     {
-      monogram: "AD",
+      logo: "appdoctor" as LogoKey,
+      fill: true,
       title: "AppDoctor",
       body: "Partner work on an application monitoring and diagnostics product focused on helping teams track mobile app health, performance, crash data, user-impacting issues, and operational signals from connected app platforms.",
     },
