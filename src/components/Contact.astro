@@ -1,5 +1,7 @@
 ---
 import { contact, site } from "../data/site";
+
+const activeLinks = contact.links.filter((link) => Boolean(link.href));
 ---
 
 <section id="contact" class="section">
@@ -20,10 +22,28 @@ import { contact, site } from "../data/site";
             {contact.heading}
           </h2>
           <p class="mt-4 text-lg text-muted">{contact.body}</p>
+          <div class="mt-5 flex flex-wrap gap-2 text-sm">
+            <span class="chip">{site.role}</span>
+            <span class="chip">{site.location}</span>
+            <span class="chip">{site.domain}</span>
+          </div>
         </div>
-        <a href={contact.cta.href} class="btn btn-primary shrink-0">
-          {contact.cta.label} →
-        </a>
+        <div class="flex shrink-0 flex-wrap gap-3">
+          {
+            activeLinks.map((link) => (
+              <a
+                href={link.href ?? "#"}
+                class:list={[
+                  "btn",
+                  link.primary ? "btn-primary" : "btn-secondary",
+                ]}
+              >
+                {link.label}
+                {link.primary && <span aria-hidden="true">→</span>}
+              </a>
+            ))
+          }
+        </div>
       </div>
     </div>
 
@@ -31,7 +51,7 @@ import { contact, site } from "../data/site";
       class="mt-10 flex flex-col gap-2 border-t border-line pt-8 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
     >
       <span>
-        © {new Date().getFullYear()} {site.name}. Built around practical software,
+        © {new Date().getFullYear()} {site.name}. Built around reliable software,
         systems, and product execution.
       </span>
       <span>{site.location} • {site.availability}</span>

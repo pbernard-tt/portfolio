@@ -30,6 +30,11 @@ import portrait from "../assets/portrait.jpg";
         <span class="gradient-text">{hero.headlineEmphasis}</span>
       </h1>
       <p class="mt-6 max-w-xl text-lg text-muted">{hero.copy}</p>
+      <p class="mt-4 max-w-xl text-base text-muted">{hero.intro}</p>
+
+      <div class="mt-6 flex max-w-2xl flex-wrap gap-2">
+        {hero.badges.map((badge) => <span class="chip">{badge}</span>)}
+      </div>
 
       <div class="mt-8 flex flex-wrap gap-3">
         <a href={hero.primaryCta.href} class="btn btn-primary">
